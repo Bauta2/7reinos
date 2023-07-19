@@ -9,7 +9,7 @@ const casas = [
         vasallaje:"casa Martell de Lanza del Sol" ,
         guarnicion: {
             caballeros:"22" ,
-            soldados:"1500" ,
+            soldados:"1400" ,
             arqueros:"500" ,
         }
 
@@ -20,12 +20,12 @@ const casas = [
         asentamiento:"Fuerte Terror" ,
         lema:"Nuestras espadas están afiladas" ,
         blason:"Un hombre desollado de gules en campo carnación de sangre" ,
-        señor:"Lord Mathys Rowan" ,
+        señor:"Lord Roose Bolton" ,
         region:"El Norte" ,
         vasallaje:"Casa Stark de Invernalia" ,
         guarnicion: {
             caballeros:"0" ,
-            soldados:"1000" ,
+            soldados:"900" ,
             arqueros:"400" ,
         }
 
@@ -127,6 +127,22 @@ const casas = [
 
 
     },
+    {
+        casa:"Hightower" ,
+        asentamiento:"Antigua" ,
+        lema:"Iluminamos el camino" ,
+        blason:"Un faro de piedra blanca con una llama en la punta" ,
+        señor:"Lord Leyton Hightower" ,
+        region:"El Dominio" ,
+        vasallaje:"Casa Tyrell de Altojardin" ,
+        guarnicion: {
+            caballeros:"30" ,
+            soldados:"1600" ,
+            arqueros:"500" ,
+        }
+
+
+    },
     
    
 
@@ -134,6 +150,40 @@ const casas = [
 ]
 
 console.table(casas);
-
+/*Número de caballeros de mayor a menor*/
 const casasOrdenadas = casas.sort((a, b) => b.guarnicion.caballeros - a.guarnicion.caballeros);
 console.table(casasOrdenadas);
+
+/*Solo casas de El Dominio*/
+const casasTheReach = casas.filter((casa) => casa.region.includes("Dominio"));
+console.table(casasTheReach);
+
+/*Nuevo array de casas, regiones y señores*/
+const casaResume = casas.map (casa => {
+    return {
+        casa: casa.casa,
+        region: casa.region,
+        señor: casa.señor,
+    }
+
+});
+console.table(casaResume);
+
+/*Unirse a una casa*/
+
+function unirseComoCaballero() {
+    const nombreCasa = prompt("Ingresa el nombre de la casa a la que deseas unirte como caballero:");
+  
+    const casaSeleccionada = casas.find((casa) => casa.casa.toLowerCase() === nombreCasa.toLowerCase());
+  
+    if (casaSeleccionada) {
+
+      casaSeleccionada.guarnicion.caballeros++;
+      alert(`¡Has puesto tu espada al servicio de la casa ${casaSeleccionada.casa}!`);
+    } else {
+      alert("La casa ingresada no existe en la lista.");
+    }
+  }
+  
+  unirseComoCaballero();
+  
