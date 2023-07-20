@@ -143,6 +143,22 @@ const casas = [
 
 
     },
+    {
+        casa:"Fossoway" ,
+        asentamiento:"La Sidra" ,
+        lema:"El sabor de la gloria" ,
+        blason:"Una manzana de gules en campo de oro" ,
+        señor:"Lord Owen Fossoway" ,
+        region:"El Dominio" ,
+        vasallaje:"Casa Tyrell de Altojardin" ,
+        guarnicion: {
+            caballeros:"12" ,
+            soldados:"700" ,
+            arqueros:"510" ,
+        }
+
+
+    },
     
    
 
@@ -151,14 +167,17 @@ const casas = [
 
 console.table(casas);
 /*Número de caballeros de mayor a menor*/
+console.log("casas ordenadas de mayor a menor número de caballeros")
 const casasOrdenadas = casas.sort((a, b) => b.guarnicion.caballeros - a.guarnicion.caballeros);
 console.table(casasOrdenadas);
 
 /*Solo casas de El Dominio*/
+console.log("casas de la región de El Dominio")
 const casasTheReach = casas.filter((casa) => casa.region.includes("Dominio"));
 console.table(casasTheReach);
 
 /*Nuevo array de casas, regiones y señores*/
+console.log("solo casa, región y señor")
 const casaResume = casas.map (casa => {
     return {
         casa: casa.casa,
@@ -172,18 +191,41 @@ console.table(casaResume);
 /*Unirse a una casa*/
 
 function unirseComoCaballero() {
-    const nombreCasa = prompt("Ingresa el nombre de la casa a la que deseas unirte como caballero:");
+    const nombreCasa = prompt("Ingresa el nombre de la casa a la que deseas unirte como caballero (ver casas en array):");
   
     const casaSeleccionada = casas.find((casa) => casa.casa.toLowerCase() === nombreCasa.toLowerCase());
   
     if (casaSeleccionada) {
 
       casaSeleccionada.guarnicion.caballeros++;
-      alert(`¡Has puesto tu espada al servicio de la casa ${casaSeleccionada.casa}!`);
+      alert(`¡Has puesto tu espada al servicio de la casa ${casaSeleccionada.casa} de ${casaSeleccionada.asentamiento}!`);
     } else {
       alert("La casa ingresada no existe en la lista.");
     }
   }
   
   unirseComoCaballero();
+
+/*mostrar informacion de casas*/
+let i = 0;
+
+while (i < casas.length) { 
+  const casaActual = casas[i]; 
+
+  
+  console.log(`Casa: ${casaActual.casa}`);
+  console.log(`Asentamiento: ${casaActual.asentamiento}`);
+  console.log(`Lema: ${casaActual.lema}`);
+  console.log(`Blason: ${casaActual.blason}`);
+  console.log(`Señor: ${casaActual.señor}`);
+  console.log(`Región: ${casaActual.region}`);
+  console.log(`Vasallaje: ${casaActual.vasallaje}`);
+  console.log(`Caballeros: ${casaActual.guarnicion.caballeros}`);
+  console.log(`Soldados: ${casaActual.guarnicion.soldados}`);
+  console.log(`Arqueros: ${casaActual.guarnicion.arqueros}`);
+  console.log('---------------------------');
+
+  i++; 
+}
+
   
